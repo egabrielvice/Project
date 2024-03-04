@@ -1,3 +1,9 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+airline_data = pd.read_csv("airline-safety.csv")
+airline_data["airline"] = airline_data["airline"].str.replace("*", "")
+
 ##firstchart
 airlines = airline_data.groupby("airline")["incidents_85_99"].sum().reset_index()
 top_airlines = airlines.nlargest(5, "incidents_85_99")
