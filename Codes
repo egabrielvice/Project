@@ -4,14 +4,15 @@ import matplotlib.pyplot as plt
 airline_data = pd.read_csv("airline-safety.csv")
 airline_data["airline"] = airline_data["airline"].str.replace("*", "")
 
+STEP #6
 airlines = airline_data.groupby("airline")["incidents_85_99"].sum().reset_index()
 top_airlines = airlines.nlargest(5, "incidents_85_99")
 
 plt.figure(figsize=(12, 8))
 plt.bar(x=top_airlines["airline"], height=top_airlines["incidents_85_99"], color=["royalblue", "deepskyblue",  "cornflowerblue",  "lightsteelblue", "skyblue"])
-plt.xlabel("Airline")
-plt.ylabel("Number of Incidents")
-plt.title("Top 5 Airlines Incidents Between 1985-1999")
+plt.xlabel("Airline", fontsize = 18)
+plt.ylabel("Number of Incidents",fontsize = 18)
+plt.title("Top 5 Airlines Incidents Between 1985-1999", fontsize = 20)
 
 airlines = airline_data.groupby("airline")["fatal_accidents_85_99"].sum().reset_index()
 top_airlines = airlines.nlargest(5, "fatal_accidents_85_99")
@@ -20,7 +21,7 @@ plt.figure(figsize=(12, 8))
 plt.bar(x=top_airlines["airline"], height=top_airlines["fatal_accidents_85_99"], color = ["mediumseagreen", "palegreen", "springgreen","lightgreen", "darkolivegreen"])
 plt.xlabel("Airline", fontsize = 18)
 plt.ylabel("Number of Fatal Accidents", fontsize = 18)
-plt.title("Top 5 Airlines Fatal Accidents Between 1985-1999")
+plt.title("Top 5 Airlines Fatal Accidents Between 1985-1999", fontsize = 20)
 
 airlines = airline_data.groupby("airline")["incidents_00_14"].sum().reset_index()
 top_airlines = airlines.nlargest(5, "incidents_00_14")
@@ -29,7 +30,7 @@ plt.figure(figsize=(12, 8))
 plt.bar(x=top_airlines["airline"], height=top_airlines["incidents_00_14"], color = ["darkorange","orangered", "coral","tomato", "lightsalmon"])
 plt.xlabel("Airline", fontsize = 18)
 plt.ylabel("Number of Incidents", fontsize = 18)
-plt.title("Top 5 Airlines Incidents Between 2000-2014s")
+plt.title("Top 5 Airlines Incidents Between 2000-2014s", fontsize = 20)
 
 airlines =airline_data.groupby("airline")["fatal_accidents_00_14"].sum().reset_index()
 top_airlines = airlines.nlargest(5, "fatal_accidents_00_14")
@@ -38,4 +39,28 @@ plt.figure(figsize=(12, 8))
 plt.bar(x=top_airlines["airline"], height=top_airlines["fatal_accidents_00_14"], color = ["indianred", "lightcoral", "salmon","tomato", "firebrick"])
 plt.xlabel("Airline", fontsize = 18)
 plt.ylabel("Number of Fatal Accidents", fontsize = 18)
-plt.title("Top 5 Airlines Fatal Accidents Between 2000-2014s")
+plt.title("Top 5 Airlines Fatal Accidents Between 2000-2014s", fontsize = 20)
+
+STEP #7 
+
+top_airlines_85_99 = airline_data.nlargest(5, "fatalities_85_99")
+top_airlines_00_14 = airline_data.nlargest(5, "fatalities_00_14")
+
+plt.figure(figsize=(28, 10))
+plt.bar(top_airlines_85_99["airline"], top_airlines_85_99["fatalities_85_99"], color= "darkblue", label="Fatalities 85-99")
+plt.bar(top_airlines_00_14["airline"], top_airlines_00_14["fatalities_00_14"], color= "gold", label="Fatalities 00-14")
+plt.legend()
+plt.xlabel("Airlines", fontsize=30)
+plt.ylabel("Number of Fatalities", fontsize=30)
+plt.title("Top 5 Airlines Comparison Between Fatalities 85-99 and Fatalities 00-14", fontsize=30)
+
+top_fatal_accidents_85_99 = airline_data.nlargest(5, "fatal_accidents_85_99")
+top_fatalities_85_89 = airline_data.nlargest(5, "fatalities_85_99")
+
+plt.figure(figsize=(42, 16))
+plt.bar(top_fatal_accidents_85_99["airline"], top_fatal_accidents_85_99["fatalities_85_99"], color= "indigo", label= "Fatal Accidents 85_99")
+plt.bar(top_fatalities_85_89["airline"], top_fatalities_85_89["fatalities_85_99"], color= "goldenrod", label="Fatalities 85_89")
+plt.legend()
+plt.xlabel("Airlines", fontsize=35)
+plt.ylabel("Number of Fatal Accidents and Fatalities", fontsize=35)
+plt.title("Top 5 Airlines Comparison Between Fatalities 85-99 and Fatalities 85-89", fontsize=35)
