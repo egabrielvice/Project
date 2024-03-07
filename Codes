@@ -57,9 +57,9 @@ plt.title("Top 5 Airlines Comparison Between Fatalities 85-99 and Fatalities 00-
 top_fatal_accidents_85_99 = airline_data.nlargest(5, "fatal_accidents_85_99")
 top_fatalities_85_89 = airline_data.nlargest(5, "fatalities_85_99")
 
-plt.figure(figsize=(25, 12))
-plt.bar(top_fatal_accidents_85_99["airline"], top_fatal_accidents_85_99["fatalities_85_99"], color= "indigo", label= "Fatal Accidents 85_99")
-plt.bar(top_fatalities_85_89["airline"], top_fatalities_85_89["fatalities_85_99"], color= "goldenrod", label="Fatalities 85_89")
+plt.figure(figsize=(20, 10))
+plt.bar(top_fatal_accidents_85_99["airline"], top_fatal_accidents_85_99["fatal_accidents_85_99"], color="indigo", label="Fatal Accidents 85_99")
+plt.bar(top_fatalities_85_89["airline"], top_fatalities_85_89["fatalities_85_99"], color="goldenrod", label="Fatalities 85_99")
 plt.legend()
 plt.xlabel("Airlines", fontsize=20)
 plt.ylabel("Number of Fatal Accidents and Fatalities", fontsize=20)
